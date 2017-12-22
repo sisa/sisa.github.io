@@ -30,6 +30,20 @@ Spring Boot için unit test yazarken yararlandığımız annotation ve sınıfla
 + **@Test                 :** Test edilemesini istediğimiz methodun önüne koyduğumuz annotation. Unit test çalışması için bu açıklmayı bekleyecektir.
 + **@Before               :** Asıl test senaryomuz çalıştırılmadan önce ,teste bir neviz ön hazırlık, çalıştırmal istediğimiz kodları için kullanıyoruz.
 
+
+**Test için gerekli jar:**
+
+```xml
+
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-test</artifactId>
+	<scope>test</scope>
+</dependency>
+
+```
+**Test Sınıfı:**
+
 ```java
 
 /**
@@ -38,6 +52,11 @@ Spring Boot için unit test yazarken yararlandığımız annotation ve sınıfla
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class AuthLoginTest {
+  private MockMvc mockMvc;
+	@Autowired
+	private WebApplicationContext webApplicationContext;
+	@Autowired
+	private ObjectMapper objectMapper;
 
 /**
  *  Before ile test öncesi yapmak istediklerimizi kodlamamıza yardımcı oluyor.
@@ -71,6 +90,8 @@ public void authLogin() throws Exception {
 	assertThat(mvcResult.getResponse().getStatus()).isEqualTo(200);
 	String token  = mvcResult.getResponse().getContentAsString();
 	assertThat(token).isNotEmpty();
+
+}
 
 }
 
