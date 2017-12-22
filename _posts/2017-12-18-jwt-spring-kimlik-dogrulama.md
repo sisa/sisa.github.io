@@ -1,12 +1,12 @@
 ---
 layout: post
-title: JWT Token Spring Boot Api üzerinde kimlik doğrulama!
+title: JWT Token Spring Boot Rest Api üzerinde kimlik doğrulama!
 tags: [spring, jwt, security, rest, authentication, authorization, kimlik dogrulama]
-bigimg: 
+bigimg:
 
 ---
 
-Microservices uygulama geliştirmede yaygın olarak kullanılan **JWT(JSON Web Token)** ile **Spring Boot** kullanarak yapmış olduğum kimlik doğrulama ve Rest servis yetkinlendirme örneğini anlatacağım. Uygulamanın kaynak kodları paylaşıldığı için 
+Microservices uygulama geliştirmede yaygın olarak kullanılan **JWT(JSON Web Token)** ile **Spring Boot** kullanarak yapmış olduğum kimlik doğrulama ve Rest servis yetkinlendirme örneğini anlatacağım. Uygulamanın kaynak kodları paylaşıldığı için
 domain objeleri(entities), repo ve servis  gb. sınıfları adım adım oluşturulmasını anlatmayacağım.
 
 travis | codecov | git
@@ -15,9 +15,9 @@ travis | codecov | git
 
 ## Gereksinimler    
 
-   + Maven 3 
+   + Maven 3
    + JDK 1.8    
-   
+
 ## API Kullanımına Genel Bakış
 
 ```curl
@@ -78,12 +78,12 @@ protected void configure(HttpSecurity http) throws Exception {
 Bu metodda hangi apilere erişim verip vermiyeceğimiz belirliyoruz. Ayrıca token validate edibilmek için Filter ekliyoruz.
 Bunlar sırasıyla :
 + ``` antMatchers(HttpMethod.POST, "/auth/login").permitAll()``` :
-Login olup token alabilmek için /api/auth/login  api için("/auth/login") herhangi security kısıtı olmadan erişimine izin veriyoruz. 
+Login olup token alabilmek için /api/auth/login  api için("/auth/login") herhangi security kısıtı olmadan erişimine izin veriyoruz.
 
 + ``` .antMatchers("/cities/*").hasRole("ADMIN").antMatchers("/cities").hasRole("STANDARD") ``` :
 /api/cities ve /api/cities/{cityId}  apilerine istek gönderebilmek için ADMIN ve STANDART role kullanıcılarına sahip olması gerekiyor.
 
-+ ``` .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class) ``` : 
++ ``` .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class) ``` :
 
 Bu filter sınıfı içinde gelen isteklerin headerinda token kontrölü yapılıyor. **AuthenticationTokenFilter** sınıfında doFilterInternal metodunu override edip gerekli kontrölleri yazıyoruz.
 
@@ -143,7 +143,7 @@ Son olarak jwt token işlemleri için yazdığım helper sıfında ki bir iki me
     private String doGenerateToken(Map<String, Object> claims, String subject, String audience) {
         final Date createdDate = new Date();
         final Date expirationDate = calculateExpirationDate(createdDate);
-        
+
 
         return Jwts.builder()
                 .setClaims(claims)
@@ -156,16 +156,16 @@ Son olarak jwt token işlemleri için yazdığım helper sıfında ki bir iki me
                 .setIssuer(jwtProperties.getAuthServerName())
                 .compact();
     }
-    
+
    public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
    }
-    
+
    public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
 	final Claims claims = getAllClaimsFromToken(token);
 	return claimsResolver.apply(claims);
    }
-    
+
    public Boolean validateToken(String token, UserDetails userDetails) {
 
         final String username = getUsernameFromToken(token);
@@ -178,8 +178,4 @@ Son olarak jwt token işlemleri için yazdığım helper sıfında ki bir iki me
 ```
 
 + jwt token oluşturma ```doGenerateToken ``` : subject kısmına sadede username koyuyoruz. secret şifresi ve issuer parametreleri için yml dosyasından uygulama açışında jwtProperties sınıfına maplediğimiz değerleri kullanıyoruz.
-+ jwt validasyonu için ``` validateToken ``` 
-
-
-
-
++ jwt validasyonu için ``` validateToken ```
