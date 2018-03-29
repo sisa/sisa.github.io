@@ -39,7 +39,7 @@ travis | codecov | git
 
 ## Swagger Spring Boot Projesine Entegrasyonu
 
-### 1.Java konfigürasyon
+### 1. Java konfigürasyon
 
 @EnableSwagger2 açıklayıcı(annotation) ile aktif ediliyor.
 RequestHandlerSelectors.basePackage ve paths kullanarak
@@ -84,16 +84,20 @@ public class SwaggerConfig {
 }
 
 ```
-### 2.Swagger UI
+### 2. Swagger UI
 
-**API Anasayfa**
+#### API Anasayfa
+
 ![Swagger UI](/img/swagger-info.png)
 
-**API Endpoint**
+#### API Endpoint
+
 ![Swagger UI](/img/swagger-rest-endpoints.png)
 
-**API Endpoint Detay**
+#### API Endpoint Detay
+
 ![Swagger UI](/img/swagger-rest-detail.png)
 
-**API Endpoint Test**
+#### API Endpoint Test
+
 ![Swagger UI](/img/swagger-rest-test.png)
