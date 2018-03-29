@@ -1,7 +1,7 @@
 ---
 layout: post
-title: SpringBootTest ile rest api unit test kullanımı!
-tags: [SpringBootTest, spring, junit, rest, test]
+title: Swagger ile rest api dökümantasyonunu
+tags: [Swagger,SpringBoot, spring, rest,]
 bigimg:
 
 ---
