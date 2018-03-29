@@ -10,7 +10,7 @@ Spring Boot ile yazılmış REST API dökümantasyonunu swagger örnek kullanım
 
 travis | codecov | git
 ------ | ------- | ---
-[![Build Status](https://travis-ci.org/sisa/spring-security-with-jwt.svg?branch=master)](https://travis-ci.org/sisa) | [![Codecov branch](https://codecov.io/gh/sisa/spring-security-with-jwt/branch/master/graphs/badge.svg)](https://codecov.io/gh/sisa/spring-security-with-jwt) | [![Repo](https://sisa.github.io//img/GitHub-Mark-32px.png)](https://github.com/sisa/spring-security-with-jwt)
+[![Build Status](https://travis-ci.org/sisa/spring-rest-h2-swagger.svg?branch=master)](https://travis-ci.org/sisa) | [![Codecov branch](https://codecov.io/gh/sisa/spring-rest-h2-swagger/branch/master/graphs/badge.svg)](https://codecov.io/gh/sisa/spring-rest-h2-swagger) | [![Repo](https://sisa.github.io//img/GitHub-Mark-32px.png)](https://github.com/sisa/spring-rest-h2-swagger)
 
 ## Gereksinimler    
 
